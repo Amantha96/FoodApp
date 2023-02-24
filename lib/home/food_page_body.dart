@@ -1,4 +1,4 @@
-import 'package:dots_indicator/dots_indicator.dart';
+ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/colors.dart';
@@ -41,6 +41,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //slider section
         Container(
           //color: Color.redAccent,
           height: Dimensions.pageView,
@@ -51,6 +52,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 return _buildPageItem(position);
               }),
         ),
+    //dots
     new DotsIndicator(
     dotsCount: 5,
     position: currPageValue,
@@ -60,9 +62,113 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     activeSize: const Size(18.0, 9.0),
     activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
     ),
-    )
+    ),
+        //Popular text
+        SizedBox(height: Dimensions.height30,),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              SizedBox(width: Dimensions.width10,),
+              Container(
+                margin: const EdgeInsets.only(bottom:3),
+                child: BigText(text:".",color:Colors.black26),
+              ),
+              SizedBox(width: Dimensions.width10,),
+              Container(
+                margin: const EdgeInsets.only(bottom:2),
+                child: SmallText(text: "Food pairing",),
+              )
+            ],
+            
+          ),
+          
+        ),
+        // listr of food and images
+        Container(
+          height: 900,
+          child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount:10,
+            itemBuilder: (context,index) {
+              return Container(
+                margin: EdgeInsets.only(left: Dimensions.width20,right: Dimensions.width20,bottom: Dimensions.height10),
+                child: Row(
+                  children: [
+                    //image section
+                    Container(
+                      width:120,
+                      height:120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(Dimensions.radius20),
+                          color:Colors.white38,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                              image: AssetImage(
+                                  "images/OIP (12).jpg"
+                              )
+                          )
+
+                      ),
+                    ),
+                    //text container
+                    Expanded(
+                      child: Container(
+                        height: 100,
+
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(Dimensions.radius20),
+                            bottomRight: Radius.circular(Dimensions.radius20),
+
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: Dimensions.width10,right: Dimensions.width10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment:MainAxisAlignment.center,
+                            children: [
+                              BigText(text: "Nutritious fruit meal in china"),
+                              SizedBox(height: Dimensions.height10,),
+                              SmallText(text:"With chaniese Characteristics"),
+                              SizedBox(height: Dimensions.height10,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                                children: [
+                                  IconAndTextWidget(icon: Icons.circle_sharp,
+                                      text: "Normal",
+                                      iconColor: AppColors.iconColor1),
+                                  IconAndTextWidget(icon: Icons.location_on,
+                                      text: "1.7km",
+                                      iconColor: AppColors.mainColor),
+                                  IconAndTextWidget(icon: Icons.access_time_rounded,
+                                      text: "32min",
+                                      iconColor: AppColors.iconColor2)
 
 
+                                ],
+                              )
+                            ],
+                          )
+                        ),
+                      ),
+                    ),
+                  ],
+
+                ),
+              );
+
+            },
+
+
+          ),
+        )
       ],
 
     );
