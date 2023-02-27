@@ -32,6 +32,10 @@ static double iconSize24=screenHeight/35.17;
   static double listViewImageSize=screenWidth/3.25;
   static double listViewTextContSize=screenWidth/3.9;
 
+  //popular food
+
+static double popularFoodImgSize=screenHeight/2.41;
+
 
 
 
