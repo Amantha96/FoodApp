@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/colors.dart';
 import 'package:foodapp/widgets/Big_Text.dart';
 
-import '../widgets/small_text.dart';
+import '../../widgets/small_text.dart';
+//import '../widgets/small_text.dart';
 import 'dimensions.dart';
 import 'food_page_body.dart';
 
