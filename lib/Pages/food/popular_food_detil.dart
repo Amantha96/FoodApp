@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/Pages/home/dimensions.dart';
 import 'package:foodapp/widgets/app_column.dart';
 import 'package:foodapp/widgets/app_icon.dart';
+import 'package:foodapp/widgets/exandable_text_widget.dart';
 
 import '../../colors.dart';
 import '../../widgets/Big_Text.dart';
@@ -18,6 +19,7 @@ class PopularFoodDetail extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+          //background image
           Positioned(
             left: 0,
               right: 0,
@@ -35,12 +37,11 @@ class PopularFoodDetail extends StatelessWidget {
                   )
 
 
-
-
                 ),
 
 
       )),
+          //icon widgets
           Positioned(
             top: Dimensions.height45,
             left: Dimensions.width20,
@@ -54,6 +55,7 @@ class PopularFoodDetail extends StatelessWidget {
             ),
 
           ),
+          //introduction of food
           Positioned(
             left: 0,
               right: 0,
@@ -77,6 +79,7 @@ class PopularFoodDetail extends StatelessWidget {
                     AppColumn(text:"Chinese Side"),
                     SizedBox(height: Dimensions.height20,),
                     BigText(text: "Introduce"),
+                    ExpandableTextWidget(text: "Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use.",)
                   ],
 
                 )
@@ -85,10 +88,11 @@ class PopularFoodDetail extends StatelessWidget {
 
 
           ))
+
         ],
       ),
       bottomNavigationBar: Container(
-        height: 120,
+        height: Dimensions.bottomHeightBar,
         padding: EdgeInsets.only(top:Dimensions.height30,bottom: Dimensions.height30,left: Dimensions.width20,right: Dimensions.width20),
         decoration: BoxDecoration(
           color: AppColors.buttonBackgroundColor,
@@ -96,6 +100,40 @@ class PopularFoodDetail extends StatelessWidget {
             topLeft: Radius.circular(Dimensions.radius20*2),
             topRight: Radius.circular(Dimensions.radius20*2),
           )
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.only(top: Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
+                color: Colors.white
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.remove,color:Colors.black54,),
+                  SizedBox(width: Dimensions.width10/2,),
+                  BigText(text:"0"),
+                  SizedBox(width: Dimensions.width10/2,),
+                  Icon(Icons.add,color: Colors.black54,),
+                ],
+
+              ),
+
+            ),
+            Container(
+              padding: EdgeInsets.only(top:Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
+              child: BigText(text: "\$10 | Add to cart",color: Colors.white,),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
+                color: AppColors.mainColor
+
+              ),
+
+            )
+          ],
+
         ),
       ),
     );

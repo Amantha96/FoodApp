@@ -38,6 +38,9 @@ static double iconSize16=screenHeight/52.75;
 
 static double popularFoodImgSize=screenHeight/2.41;
 
+//bottom height
+static double bottomHeightBar = screenHeight/7.03;
+
 
 
 
