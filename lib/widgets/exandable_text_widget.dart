@@ -40,9 +40,9 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child:secondHalf.isEmpty?SmallText(text: firstHalf):Column(
+      child:secondHalf.isEmpty?SmallText(size:Dimensions.font16,text: firstHalf):Column(
         children: [
-          SmallText(text: hiddenText?(firstHalf+"..."):(firstHalf+secondHalf)),
+          SmallText(height:1.8,color:AppColors.textColor,size:Dimensions.font16,text: hiddenText?(firstHalf+"..."):(firstHalf+secondHalf)),
           InkWell(
             onTap:(){
               setState(() {
