@@ -7,5 +7,6 @@ class AppColors{
   static const Color iconColor1 = Color(0xFFffa500);
   static const Color iconColor2 = Color(0xFFdc143c);
   static const Color buttonBackgroundColor = Color(0xFFEEEEEE);
+  static const Color yellowColor = Color(0xFFff8000);
 
 }
