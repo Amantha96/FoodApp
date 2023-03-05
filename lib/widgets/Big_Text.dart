@@ -22,9 +22,9 @@ class BigText extends StatelessWidget {
       maxLines: 1,
       overflow: overflow,
       style: TextStyle(
-        fontFamily: 'Roboto',
+        fontFamily: 'TiltWarp-Regular',
           color:color,
-        fontSize: Dimensions.font20,
+        fontSize: Dimensions.font26,
         fontWeight: FontWeight.w400
       ),
     );
