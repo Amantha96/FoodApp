@@ -5,10 +5,14 @@ import 'package:get/get.dart';
 import 'Pages/food/popular_food_detil.dart';
 import 'Pages/food/recommendes_food_details.dart';
 import 'Pages/home/main_food-page.dart';
+import 'helper/dependancies.dart'as dep;
 
 
 
-void main() {
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const MyApp());
 }
 
