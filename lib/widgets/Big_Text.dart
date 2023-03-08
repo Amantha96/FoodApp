@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 //import 'package:foodapp/home/dimensions.dart';
 
-import '../Pages/home/dimensions.dart';
+import '../utills/dimensions.dart';
 
 class BigText extends StatelessWidget {
   Color? color;

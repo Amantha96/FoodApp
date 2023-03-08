@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/widgets/small_text.dart';
 
-import '../Pages/home/dimensions.dart';
-import '../colors.dart';
+import '../utills/dimensions.dart';
+import '../utills/colors.dart';
 import 'Big_Text.dart';
 import 'icon_and_text_widget.dart';
 

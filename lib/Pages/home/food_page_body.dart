@@ -1,13 +1,13 @@
   import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodapp/colors.dart';
+import 'package:foodapp/utills/colors.dart';
 import 'package:foodapp/widgets/Big_Text.dart';
 import 'package:foodapp/widgets/app_column.dart';
 import 'package:foodapp/widgets/icon_and_text_widget.dart';
 import 'package:foodapp/widgets/small_text.dart';
 
-import 'dimensions.dart';
+import '../../utills/dimensions.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({Key? key}) : super(key: key);
@@ -54,7 +54,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               }),
         ),
     //dots
-    new DotsIndicator(
+     DotsIndicator(
     dotsCount: 5,
     position: currPageValue,
     decorator: DotsDecorator(

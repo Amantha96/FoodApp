@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodapp/Pages/home/dimensions.dart';
-import 'package:foodapp/colors.dart';
+import 'package:foodapp/utills/dimensions.dart';
+import 'package:foodapp/utills/colors.dart';
 import 'package:foodapp/widgets/small_text.dart';
 
 
