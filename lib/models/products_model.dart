@@ -1,82 +1,71 @@
-void main() {
-  var myMap = {
-    "name": 'Amantha',
-    "age": 34,
-    "city": 'Kandy',
-    "address": [
-      {
-        "Country": "Srilanka",
-        "City": "Kandy"
-      },
-      {
-        "Country": "Bangaladesh",
-        "City": "Dhaka"
-      }
-    ]
-  };
-  var obj = Person.fromJson(myMap);
+class Product {
+  int? _totalSize;
+  int? _typeId;
+  int? _offset;
+  late List<ProductModel> _products;
+  List<ProductModel> get products => _products;
 
-  var myAddress = obj.address;
-  myAddress!.map((e) {
-    print(e.country);
-  }).toList();
-}
+  Product({
+    required int totalSize,
+    required int typeId,
+    required int offset,
+    required List<ProductModel> products,
+  }) {
+    _totalSize = totalSize;
+    _typeId = typeId;
+    _offset = offset;
+    _products = products;
+  }
 
-class Person {
-  String? name;
-  int? age;
-  String? city;
-  List<Address>? address;
-
-  Person({
-    this.name,
-    this.age,
-    this.city,
-    this.address,
-  });
-
-  Person.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    age = json['age'];
-    city = json['city'];
-    if (json['address'] != null) {
-      address = <Address>[];
-      json['address'].forEach((e) {
-        address!.add(Address.fromJson(e));
+  Product.fromJson(Map<String, dynamic> json) {
+    _totalSize = json['total_size'];
+    _typeId = json['type_id'];
+    _offset = json['offset'];
+    if (json['products'] != null) {
+      _products = <ProductModel>[];
+      json['products'].forEach((v) {
+        _products.add(ProductModel.fromJson(v));
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['age'] = this.age;
-    data['city'] = this.city;
-    if (this.address != null) {
-      data['address'] = this.address!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
-class Address {
-  String? country;
-  String? city;
+class ProductModel {
+  int? id;
+  String? name;
+  String? description;
+  int? price;
+  int? stars;
+  String? img;
+  String? location;
+  String? createdAt;
+  String? updatedAt;
+  int? typeId;
 
-  Address({
-    this.country,
-    this.city,
+  ProductModel({
+    this.id,
+    this.name,
+    this.description,
+    this.price,
+    this.stars,
+    this.img,
+    this.location,
+    this.createdAt,
+    this.updatedAt,
+    this.typeId,
   });
 
-  Address.fromJson(Map<String, dynamic> json) {
-    country = json['Country'];
-    city = json['City'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Country'] = this.country;
-    data['City'] = this.city;
-    return data;
+  ProductModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    description = json['description'];
+    price = json['price'];
+    stars = json['stars'];
+    img = json['img'];
+    location = json['location'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    typeId = json['type_id'];
   }
 }
+
