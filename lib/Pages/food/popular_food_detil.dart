@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodapp/Pages/home/main_food-page.dart';
 import 'package:foodapp/utils/dimensions.dart';
 import 'package:foodapp/widgets/app_column.dart';
 import 'package:foodapp/widgets/app_icon.dart';
 import 'package:foodapp/widgets/exandable_text_widget.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../utils/colors.dart';
 import '../../widgets/Big_Text.dart';
@@ -49,7 +52,13 @@ class PopularFoodDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back_ios),
+                GestureDetector(
+                    onTap:(){
+
+                      Get.to(()=>MainFoodPage());
+                    },
+                    child:
+                    AppIcon(icon: Icons.arrow_back_ios)),
                 AppIcon(icon: Icons.shopping_cart_checkout_outlined),
               ],
             ),

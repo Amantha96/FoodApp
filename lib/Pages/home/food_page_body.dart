@@ -1,9 +1,11 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodapp/Pages/food/popular_food_detil.dart';
 import 'package:foodapp/controllers/popular_product_controller.dart';
 import 'package:foodapp/controllers/recommend_product_controller.dart';
 import 'package:foodapp/models/products_model.dart';
+import 'package:foodapp/routes/route_helper.dart';
 import 'package:foodapp/utils/app_constants.dart';
 import 'package:foodapp/utils/colors.dart';
 import 'package:foodapp/widgets/Big_Text.dart';
@@ -54,12 +56,18 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           return popularProducts.isLoaded?Container(
             //color: Color.redAccent,
             height: Dimensions.pageView,
-            child: PageView.builder(
-                controller: pageController,
-                itemCount: popularProducts.popularProductList.length,
-                itemBuilder: (context, position) {
-                  return _buildPageItem(position, popularProducts.popularProductList[position]);
-                }),
+            child: GestureDetector(
+              onTap: (){
+                Get.toNamed(RouteHelper.popularFood);
+
+              },
+              child: PageView.builder(
+                  controller: pageController,
+                  itemCount: popularProducts.popularProductList.length,
+                  itemBuilder: (context, position) {
+                    return _buildPageItem(position, popularProducts.popularProductList[position]);
+                  }),
+            ),
           ):CircularProgressIndicator(
             color: AppColors.mainColor,
 
@@ -110,7 +118,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           return recommendedProduct.isLoaded? ListView.builder(
             physics:  NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount:10,
+            itemCount:recommendedProduct.recommendedProductList.length,
             itemBuilder: (context,index) {
               return Container(
                 margin: EdgeInsets.only(left: Dimensions.width20,right: Dimensions.width20,bottom: Dimensions.height10),
@@ -125,8 +133,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                           color:Colors.white38,
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage(
-                                  "images/OIP (12).jpg"
+                              image: NetworkImage(
+                                  AppConstants.BASE_URL+AppConstants.UPLOAD_URL+recommendedProduct.recommendedProductList[index].img!
                               )
                           )
 
@@ -151,7 +159,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment:MainAxisAlignment.center,
                               children: [
-                                BigText(text: "Nutritious fruit meal in china"),
+                                BigText(text:recommendedProduct.recommendedProductList[index].name!),
                                 SizedBox(height: Dimensions.height10,),
                                 SmallText(text:"With chaniese Characteristics"),
                                 SizedBox(height: Dimensions.height10,),
@@ -235,7 +243,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        AppConstants.BASE_URL+"/upload/"+ popularProduct.img!
+                        AppConstants.BASE_URL+AppConstants.UPLOAD_URL+ popularProduct.img!
                     )
                 )
             ),
