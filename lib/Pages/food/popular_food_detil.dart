@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodapp/utills/dimensions.dart';
+import 'package:foodapp/utils/dimensions.dart';
 import 'package:foodapp/widgets/app_column.dart';
 import 'package:foodapp/widgets/app_icon.dart';
 import 'package:foodapp/widgets/exandable_text_widget.dart';
 
-import '../../utills/colors.dart';
+import '../../utils/colors.dart';
 import '../../widgets/Big_Text.dart';
 import '../../widgets/icon_and_text_widget.dart';
 import '../../widgets/small_text.dart';

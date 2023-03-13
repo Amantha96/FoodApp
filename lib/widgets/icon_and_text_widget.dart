@@ -2,7 +2,7 @@
 //import 'package:foodapp/home/dimensions.dart';
 import 'package:foodapp/widgets/small_text.dart';
 
-import '../utills/dimensions.dart';
+import '../utils/dimensions.dart';
 
 class IconAndTextWidget extends StatelessWidget {
   final IconData icon;

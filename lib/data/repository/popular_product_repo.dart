@@ -1,5 +1,5 @@
 import 'package:foodapp/data/api/api_client.dart';
-import 'package:foodapp/utills/app_constants.dart';
+import 'package:foodapp/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 class PopularProductRepo extends GetxService{

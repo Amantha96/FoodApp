@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:foodapp/utills/dimensions.dart';
+import 'package:foodapp/utils/dimensions.dart';
 
 class AppIcon extends StatelessWidget {
   final IconData icon;

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: FoodPageBody(),
+      home: const MainFoodPage(),
     );
   }
 }

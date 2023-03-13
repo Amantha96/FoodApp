@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 
-import '../../utills/app_constants.dart';
+import '../../utils/app_constants.dart';
 
 class ApiClient extends GetConnect implements GetxService {
   late String token;
