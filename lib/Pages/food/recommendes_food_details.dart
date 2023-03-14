@@ -1,26 +1,42 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodapp/controllers/recommend_product_controller.dart';
+import 'package:foodapp/routes/route_helper.dart';
+import 'package:foodapp/utils/app_constants.dart';
 import 'package:foodapp/utils/dimensions.dart';
 import 'package:foodapp/utils/colors.dart';
 import 'package:foodapp/widgets/Big_Text.dart';
 import 'package:foodapp/widgets/app_icon.dart';
 import 'package:foodapp/widgets/exandable_text_widget.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+  const RecommendedFoodDetail({Key? key,required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product=Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 75,
             title:Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+               GestureDetector(
+                 onTap: (){
+                   Get.toNamed(RouteHelper.getInitial());
+
+
+                 },
+                 child: AppIcon(icon: Icons.clear),
+
+               ),
                 AppIcon(icon: Icons.shopping_cart_checkout_outlined)
               ],
 
@@ -29,7 +45,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               preferredSize: Size.fromHeight(20),
               child: Container(
 
-                child: Center(child: BigText(size:Dimensions.font26,text:"Chinese Side",)),
+                child: Center(child: BigText(size:Dimensions.font26,text:product.name!,)),
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5,bottom: 10),
                 decoration: BoxDecoration(
@@ -48,8 +64,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor ,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                  "images/OIP (12).jpg",
+              background: Image.network(
+                  AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
 
@@ -63,8 +79,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             child: Column(
               children: [
                 Container(
+                  child:ExpandableTextWidget(text:product.description!),
 
-                  child: ExpandableTextWidget(text:"Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use.Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use.Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use"),
                     margin:EdgeInsets.only(left:Dimensions.width20,right:Dimensions.width20  )
 
                 )
@@ -92,7 +108,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     iconColor:Colors.white,
                     backgroundColor:AppColors.mainColor,
                     icon: Icons.remove),
-                BigText(text:"\$12.88 "+" x "+" 0 ",color: Colors.black,size: Dimensions.font26,),
+                BigText(text:"\$${product.price!} x 0 ",color: Colors.black,size: Dimensions.font26,),
                 AppIcon(
                     iconsize: Dimensions.iconSize24,
                     iconColor:Colors.white,

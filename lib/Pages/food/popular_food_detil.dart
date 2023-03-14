@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/Pages/home/main_food-page.dart';
+import 'package:foodapp/controllers/popular_product_controller.dart';
+import 'package:foodapp/utils/app_constants.dart';
 import 'package:foodapp/utils/dimensions.dart';
 import 'package:foodapp/widgets/app_column.dart';
 import 'package:foodapp/widgets/app_icon.dart';
@@ -14,10 +16,13 @@ import '../../widgets/icon_and_text_widget.dart';
 import '../../widgets/small_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+ const PopularFoodDetail({Key? key,required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product=Get.find<PopularProductController>().popularProductList[pageId];
+  Get.find<PopularProductController>().initProduct();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -32,9 +37,8 @@ class PopularFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage(
-                        "images/OIP (12).jpg"
-
+                    image: NetworkImage(
+                      AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!
                     )
 
                   )
@@ -85,11 +89,11 @@ class PopularFoodDetail extends StatelessWidget {
                 child:Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppColumn(text:"Chinese Side"),
+                    AppColumn(text:product.name!),
                     SizedBox(height: Dimensions.height20,),
                     BigText(text: "Introduce"),
                     SizedBox(height: Dimensions.height20,),
-                    Expanded(child: SingleChildScrollView(child: ExpandableTextWidget(text: "Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use.Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. Chicken biryani is a delicious Pakistani/Indian rice dish that's typically reserved for special occasions such as weddings, parties, or holidays such as Ramadan. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use. It has a lengthy preparation, but the work is definitely worth it. For biryani, basmati rice is the ideal variety to use",)))
+                    Expanded(child: SingleChildScrollView(child: ExpandableTextWidget(text: product.descreption!)))
                   ],
 
                 )
@@ -101,51 +105,65 @@ class PopularFoodDetail extends StatelessWidget {
 
         ],
       ),
-      bottomNavigationBar: Container(
-        height: Dimensions.bottomHeightBar,
-        padding: EdgeInsets.only(top:Dimensions.height30,bottom: Dimensions.height30,left: Dimensions.width20,right: Dimensions.width20),
-        decoration: BoxDecoration(
-          color: AppColors.buttonBackgroundColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(Dimensions.radius20*2),
-            topRight: Radius.circular(Dimensions.radius20*2),
-          )
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: Colors.white
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.remove,color:Colors.black54,),
-                  SizedBox(width: Dimensions.width10/2,),
-                  BigText(text:"0"),
-                  SizedBox(width: Dimensions.width10/2,),
-                  Icon(Icons.add,color: Colors.black54,),
-                ],
+      bottomNavigationBar: GetBuilder<PopularProductController>(builder:(popularProduct){
+        return Container(
+          height: Dimensions.bottomHeightBar,
+          padding: EdgeInsets.only(top:Dimensions.height30,bottom: Dimensions.height30,left: Dimensions.width20,right: Dimensions.width20),
+          decoration: BoxDecoration(
+              color: AppColors.buttonBackgroundColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Dimensions.radius20*2),
+                topRight: Radius.circular(Dimensions.radius20*2),
+              )
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: Colors.white
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                        onTap: (){
+                          popularProduct.setQuantity(false);
+
+                        },
+
+                        child: Icon(Icons.remove,color: Colors.black54,)),
+                    SizedBox(width: Dimensions.width10/2,),
+                    BigText(text:popularProduct.quantity.toString()),
+                    SizedBox(width: Dimensions.width10/2,),
+                    GestureDetector(
+                        onTap: (){
+                          popularProduct.setQuantity(true);
+
+                        },
+
+                        child: Icon(Icons.add,color: Colors.black54,)),
+                  ],
+
+                ),
 
               ),
+              Container(
+                padding: EdgeInsets.only(top:Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
+                child: BigText(text: "\$10 ${product.price} | Add to cart",color: Colors.white,),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColors.mainColor
 
-            ),
-            Container(
-              padding: EdgeInsets.only(top:Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
-              child: BigText(text: "\$10 | Add to cart",color: Colors.white,),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: AppColors.mainColor
+                ),
 
-              ),
+              )
+            ],
 
-            )
-          ],
-
-        ),
-      ),
+          ),
+        );
+      },) ,
     );
   }
 }
