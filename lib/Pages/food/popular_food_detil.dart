@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/Pages/home/main_food-page.dart';
+import 'package:foodapp/controllers/cart_controller.dart';
 import 'package:foodapp/controllers/popular_product_controller.dart';
 import 'package:foodapp/utils/app_constants.dart';
 import 'package:foodapp/utils/dimensions.dart';
@@ -22,7 +23,7 @@ class PopularFoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var product=Get.find<PopularProductController>().popularProductList[pageId];
-  Get.find<PopularProductController>().initProduct();
+  Get.find<PopularProductController>().initProduct(Get.find<CartController>());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
