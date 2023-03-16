@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/controllers/cart_controller.dart';
 import 'package:foodapp/data/repository/popular_product_repo.dart';
+import 'package:foodapp/models/cart_model.dart';
 import 'package:foodapp/utils/colors.dart';
 import 'package:get/get.dart';
 
@@ -123,6 +124,9 @@ update();
     int get totalItems{
     return _cart.totalItems;
   }
+List<CartModel>get getItems{
+    return _cart.getItems;
 
+}
 }
 
