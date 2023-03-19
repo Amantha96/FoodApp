@@ -5,7 +5,7 @@ description: A new Flutter project.
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-#The following defines the version and build number for your application.
+# The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
 # Both the version and the builder number may be overridden in flutter
@@ -32,15 +32,9 @@ dependencies:
   get: ^4.1.4
   dots_indicator:  ^2.1.0
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -59,15 +53,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-     - images/OIP (11).jpg
-     - images/OIP (12).jpg
-
-#   An image asset can refer to one or more resolution-specific "variants", see
-#   https://flutter.dev/assets-and-images/#resolution-aware.
-#
-#   For details regarding adding assets from package dependencies, see
-#   https://flutter.dev/assets-and-images/#from-packages
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -75,15 +60,14 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-  - family: Roboto
-    fonts:
-      - asset: Roboto-Bold.ttf
-        weight: 900
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: fonts/Roboto-Bold.ttf
+          weight: 700
 
-  - family: TiltWarp-Regular
-    fonts:
-      - asset: TTiltWarp-Regular-VariableFont_XROT,YROT.ttf
-        weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+    - family: TiltWarp-Regular
+      fonts:
+        - asset: fonts/TiltWarp-Regular.ttf
+          weight: 400
