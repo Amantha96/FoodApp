@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               //home: SplashScreen(),
-,
+
               initialRoute: RouteHelper.getSplshPage(),
              getPages: RouteHelper.routes,
             ); // Replace this with your widget tree
