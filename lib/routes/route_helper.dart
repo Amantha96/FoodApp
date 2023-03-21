@@ -10,11 +10,13 @@ import '../Pages/food/recommendes_food_details.dart';
 import '../Pages/home/home_page.dart';
 
 class RouteHelper{
+  static const String splashPage="/splash-page";
   static const String initial="/";
   static const String popularFood="/popular-food";
   static const String recommendedFood="/recommended-food";
   static const String cartPage="/cart-page";
 
+  static String getSplshPage()=>'$splashPage';
   static String getInitial()=>'$initial';
   static String getPopularFood(int pageId,String page)=>'$popularFood?pageId=$pageId&$page';
   static String getRecommendedFood(int pageId)=>'$recommendedFood?pageId=$pageId';

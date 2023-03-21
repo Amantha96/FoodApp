@@ -27,16 +27,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner:false,
-      title: 'Flutter Demo',
-
-      //home: MainFoodPage(),
-      initialRoute: RouteHelper.getInitial(),
-      getPages: RouteHelper.routes,
-    );
+    return GetBuilder<PopularProductController>(
+      builder: (_) {
+        return GetBuilder<RecommendedProductController>(
+          builder: (_) {
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              //home: SplashScreen(),
+,
+              initialRoute: RouteHelper.getSplshPage(),
+             getPages: RouteHelper.routes,
+            ); // Replace this with your widget tree
+          },);
+      },);
   }
 }
 
