@@ -40,6 +40,7 @@ class CartModel {
     "quantity":this.quantity,
     "isExist":this.isExit,
     "time":this.time,
+    "product":this.product!.toJson()
   };
   }
 }

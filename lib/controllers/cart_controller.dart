@@ -9,13 +9,13 @@ import '../utils/colors.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
-
   CartController({required this.cartRepo});
-
   Map<int, CartModel> _items = {};
 
   Map<int, CartModel> get items => items;
+  //only for storage and sharedpreferences
 
+  List<CartModel>storageItem=[];
   void addItem(ProductModel product, int quantity) {
     var totalQuntity = 0;
     if (_items.containsKey(product.id)) {
@@ -85,8 +85,8 @@ class CartController extends GetxController {
 
     return quantity;
   }
-
-  int get totalItems {
+//print(totalItems);
+  int get totalItems  {
     var totalQuantity = 0;
     _items.forEach((key, value) {
       totalQuantity += value.quantity!;
@@ -111,7 +111,33 @@ class CartController extends GetxController {
     return total;
 
   }
+
+   List<CartModel> getCartData(){
+    setCart = cartRepo.getCartList();
+    return storageItem;
 }
+
+set setCart(List<CartModel>items) {
+  storageItem = items;
+  print("Length of cart items" + storageItem.length.toString());
+
+  for (int i = 0; i < storageItem.length; i++) {
+    _items.putIfAbsent(storageItem[i].product!.id!, () => storageItem[i]);
+  }
+}
+    void addToHistory(){
+      cartRepo.addToCartHistoryList();
+      clear();
+    }
+    void clear(){
+    _items={};
+    update();
+    }
+    List<CartModel>getCartHistoryList(){
+    return cartRepo.getCartHistoryList();
+    }
+  }
+
 
 
 
