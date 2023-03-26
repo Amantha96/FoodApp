@@ -19,7 +19,7 @@ class RouteHelper{
   static String getSplshPage()=>'$splashPage';
   static String getInitial()=>'$initial';
   static String getPopularFood(int pageId,String page)=>'$popularFood?pageId=$pageId&$page';
-  static String getRecommendedFood(int pageId)=>'$recommendedFood?pageId=$pageId';
+  static String getRecommendedFood(int pageId, String cartpage)=>'$recommendedFood?pageId=$pageId';
   static String getCartPage()=>'$cartPage';
 
 
