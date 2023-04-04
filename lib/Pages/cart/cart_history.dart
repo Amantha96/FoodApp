@@ -21,6 +21,8 @@ class CartHistory extends StatelessWidget {
 
   get i => null;
 
+  get index => null;
+
   @override
   Widget build(BuildContext context) {
     var getCartHistoryList = Get.find<CartController>()
@@ -46,6 +48,17 @@ class CartHistory extends StatelessWidget {
     List<int>itemsPerOrder=cartItemsPerOrderToList();
 
     var listCounter=0;
+    Widget timeWideget(int inedex){
+      var outputDate = DateTime.now().toString();
+     if(index<getCartHistoryList.length){
+       DateTime parseDate= DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[listCounter].time!);
+       var inputDate=DateTime.parse(parseDate.toString());
+       var outputFormat= DateFormat("MM/dd/yyyy hh:mm a");
+       var outputDate= outputFormat.format(inputDate);
+
+     }
+     return BigText(text:outputDate);
+    }
 
     return Scaffold(
       body: Column(
@@ -70,9 +83,10 @@ class CartHistory extends StatelessWidget {
               ],
             ),
           ),
+
           GetBuilder<CartController>(builder: (_cartController){
-            return _cartController.getCartHistoryList().length>0?Expanded(
-                child: Container(
+            return _cartController.getCartHistoryList().length>0?
+            Expanded(child: Container(
                   margin: EdgeInsets.only(
                     top: Dimensions.height20,
                     left: Dimensions.width20,
@@ -94,13 +108,8 @@ class CartHistory extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                ((){
-                                  DateTime parseDate= DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[listCounter].time!);
-                                  var inputDate=DateTime.parse(parseDate.toString());
-                                  var outputFormat= DateFormat("MM/dd/yyyy hh:mm a");
-                                  var outputDate= outputFormat.format(inputDate);
-                                  return BigText(text:outputDate);
-                                }()),
+                                timeWideget(listCounter),
+
                                 SizedBox(height: Dimensions.height10),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,8 +196,12 @@ class CartHistory extends StatelessWidget {
                         },
                       )),
                 )):
-            NoDataPage(text:"you didn't buy anything so far !",imgPath:"images/empty cart.png");
-
+            Container(
+                height:MediaQuery.of(context).size.height /1.5,
+                child:const Center(
+                  child: NoDataPage(text:"you didn't buy anything so far !",
+                      imgPath:"images/package.png"),
+                ));
           })
         ],
       ),
